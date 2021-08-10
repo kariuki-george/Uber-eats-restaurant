@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background-color);
+}
+.App {
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.light {
+  --border-color: gray;
+  --background-color: white;
+  --input-background-color: whitesmoke;
+  --modal-background-color: rgb(211, 209, 209);
+  --color: black;
+}
+
+.dark {
+  --border-color: whitesmoke;
+  --background-color: black;
+  --input-background-color: rgb(66, 64, 64);
+  --modal-background-color: rgb(202, 193, 193);
+  --color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  color: var(--color);
+  text-decoration: none;
+}
+a:hover {
+  color: adjust-color(
+    $color: black,
+    $hue: 3,
+    $saturation: 30%,
+    $lightness: 30%,
+    $alpha: 1
+  );
+}
+
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.75em;
+}
+h3 {
+  font-size: 1.5em;
+}
+h4 {
+  font-size: 1.25em;
+}
+h5 {
+  font-size: 1em;
+}
+h6 {
+  font-size: 0.75em;
+}
+button {
+  padding: 0.5em 2em;
+  color: var(--background-color);
+  background-color: var(--color);
+  border-color: 1px var(--color) solid;
+  border-radius: 10px;
+}
+button:hover {
+  color: var(--color);
+  background-color: var(--background-color);
+  border: 1px (--background-color) solid;
+}
+
+form {
+  width: 400px;
+  background-color: var(--modal-background-color);
+  border: 1px var(--border-color) solid;
+  padding: 2em;
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    font-size: 1.2em;
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 300px;
+    background-color: var(--input-background-color);
+    margin: 1em;
+  }
+  div {
+    display: flex;
+    button {
+      margin-left: 3em;
+    }
+  }
+}

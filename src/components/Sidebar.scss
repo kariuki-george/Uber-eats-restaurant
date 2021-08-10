@@ -1,0 +1,17 @@
+.sidebar {
+  min-width: 290px;
+  border-right: 1px var(--border-color) solid;
+  height: 100vh;
+  position: fixed;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2em 1em;
+  background-color: var(--background-color);
+
+  img {
+    object-fit: cover;
+    width: 200px;
+  }
+}
