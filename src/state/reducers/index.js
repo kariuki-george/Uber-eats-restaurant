@@ -1,5 +1,8 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "@reduxjs/toolkit";
+import user from "./authSlice";
+import theme from "./themeSlice";
 
-const reducers = combineReducers();
-
-export default reducers;
+export default combineReducers({
+  user,
+  theme,
+});

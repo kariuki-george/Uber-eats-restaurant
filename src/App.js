@@ -1,21 +1,26 @@
 import "./App.scss";
 import Sidebar from "./components/Sidebar";
 import Mainbar from "./Mainbar";
+import { Toaster } from "react-hot-toast";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [dark, setDark] = useState(false);
+  const { theme } = useSelector((state) => state.theme);
 
   useEffect(() => {
     document.body.classList.remove("dark");
     document.body.classList.remove("light");
-    dark
-      ? document.body.classList.add("dark")
-      : document.body.classList.add("light");
-  }, [dark]);
+    if (theme === ".light") {
+      document.body.classList.add("light");
+    } else {
+      document.body.classList.add("dark");
+    }
+  }, [theme]);
 
   return (
     <div>
+      <Toaster />
       <Sidebar />
       <Mainbar />
     </div>

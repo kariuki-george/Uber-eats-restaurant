@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./UpdateModal.scss";
-import Axios from "axios";
-import Notification from "../components/Notification";
 
 function UpdateModal({ name, order, setShowUpdateModal }) {
   const [menuName, setMenuName] = useState("");
@@ -14,23 +12,6 @@ function UpdateModal({ name, order, setShowUpdateModal }) {
     const name = menuName ? menuName : order.name;
     const price = menuPrice ? menuPrice : order.price;
     const id = order._id;
-
-    const response = Axios.put(
-      `${process.env.REACT_APP_API_URL}restaurant/updateFood`,
-      {
-        name,
-        price,
-        id,
-      }
-    );
-    return response.data;
-  };
-
-  const notification = () => {
-    setTimeout(() => {
-      setSending(false);
-      setInfo("sending");
-    }, 4000);
   };
 
   const handleUpdate = (e) => {
@@ -39,7 +20,6 @@ function UpdateModal({ name, order, setShowUpdateModal }) {
     const response = updateMenu();
     setInfo(response);
 
-    notification();
     setShowUpdateModal(false);
   };
 
@@ -74,7 +54,6 @@ function UpdateModal({ name, order, setShowUpdateModal }) {
       ) : (
         <form></form>
       )}
-      {sending && <Notification info={info} />}
     </div>
   );
 }

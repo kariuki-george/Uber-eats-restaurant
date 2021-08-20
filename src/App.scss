@@ -7,8 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: var(--background-color);
 }
-.App {
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -20,14 +19,20 @@ code {
   --input-background-color: whitesmoke;
   --modal-background-color: rgb(211, 209, 209);
   --color: black;
+  --shadow-color: rgba(0, 0, 0, 0.637);
+  transition: 1s ease-in-out;
+  --backdrop-color: rgba(0, 0, 0, 0.397);
 }
 
 .dark {
   --border-color: whitesmoke;
   --background-color: black;
   --input-background-color: rgb(66, 64, 64);
-  --modal-background-color: rgb(202, 193, 193);
+  --modal-background-color: rgb(99, 86, 86);
   --color: white;
+  --shadow-color: rgba(255, 255, 255, 0.637);
+  --backdrop-color: rgba(255, 255, 255, 0.26);
+  transition: 1s ease-in-out;
 }
 
 * {
@@ -35,7 +40,16 @@ code {
   padding: 0;
   box-sizing: border-box;
 }
-a {
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+input::placeholder,
+input {
   color: var(--color);
   text-decoration: none;
 }
@@ -66,6 +80,7 @@ h5 {
 }
 h6 {
   font-size: 0.75em;
+  font-weight: 300;
 }
 button {
   padding: 0.5em 2em;
@@ -79,7 +94,18 @@ button:hover {
   background-color: var(--background-color);
   border: 1px (--background-color) solid;
 }
-
+input,
+select {
+  font-size: 1.2em;
+  border: none;
+  outline: none;
+  padding: 1em;
+  height: 50px;
+  width: 300px;
+  background-color: var(--input-background-color);
+  margin: 1em;
+  border-radius: 10px;
+}
 form {
   width: 400px;
   background-color: var(--modal-background-color);
@@ -90,15 +116,6 @@ form {
   flex-direction: column;
   align-items: center;
 
-  input {
-    font-size: 1.2em;
-    border: none;
-    outline: none;
-    height: 50px;
-    width: 300px;
-    background-color: var(--input-background-color);
-    margin: 1em;
-  }
   div {
     display: flex;
     button {

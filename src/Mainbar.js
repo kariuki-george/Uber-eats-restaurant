@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Footer from "./components/Footer";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { useSelector } from "react-redux";
 import Login from "./login/Login";
 import Register from "./login/Register";
-import Home from "./Home";
+import Home from "./home/Home";
+import Statistics from "./statistics/Statistics";
+import Menu from "./menu/Menu";
+import Orders from "./orders/Orders";
+import Settings from "./settings//Settings";
 import "./Mainbar.scss";
 
 function Mainbar() {
@@ -22,33 +32,43 @@ function Mainbar() {
     <div className="mainbar" style={{ width: `${width - 300}px` }}>
       <Router>
         <Switch>
-          <Route exact path="/">
-            {isLogged ? <Home /> : <Login />}
-          </Route>
-          <Route exact path="/orders">
-            orders
-          </Route>
-          <Route exact path="/menu">
-            menu
-          </Route>
-          <Route exact path="/statistics">
-            statistics
-          </Route>
-          <Route exact path="/settings">
-            settings
-          </Route>
+          <PrivateRoute exact path="/" component={Home} />
+
+          <PrivateRoute exact path="/" component={Orders} />
+          <PrivateRoute exact path="/" component={Menu} />
+          <PrivateRoute exact path="/" component={Statistics} />
+          <PrivateRoute exact path="/" component={Settings} />
+
           <Route exact path="/login">
             <Login />
           </Route>
           <Route exact path="/register">
             <Register />
           </Route>
-          <Route path="*">error:Page not found</Route>
+          <Redirect from="*" to="/landing" />
         </Switch>
         {/* <Footer /> */}
       </Router>
     </div>
   );
 }
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { isLoggedIn } = useSelector((state) => state.user);
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isLoggedIn ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: "/landing", state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
 
 export default Mainbar;

@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Axios from "axios";
-
+import toast from "react-hot-toast";
+import { useSelector, useDispatch } from "react-redux";
+import { clearState } from "../state/reducers/authSlice";
+import { register } from "../services/auth";
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { isError, isSuccess, errorMessage } = useSelector(
+    (state) => state.user
+  );
   const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -16,26 +23,21 @@ function Register() {
       return alert("password is not the same as confirm password");
     }
     if (name && email && password) {
-      const response = await Axios.post(
-        `${process.env.REACT_APP_API_URL}/register`,
-        {
-          username: name,
-          email,
-          password,
-        }
-      );
-
-      if (response.data === "hello") {
-        alert("Account created Successfully");
-        return history.replace("/login");
-      } else {
-        const { email, username } = response.data;
-
-        return alert(`${email ? email : password} is already taken`);
-      }
+      dispatch(register({ email, username: name, password }));
+      return dispatch(clearState());
     }
     return alert("Ensure all fields are filled");
   };
+  useEffect(() => {
+    if (isError) {
+      toast.error(errorMessage);
+      dispatch(clearState());
+    }
+    if (isSuccess) {
+      toast.success(errorMessage);
+      history.replace("/login");
+    }
+  }, [isError, isSuccess]);
 
   return (
     <div className="register">

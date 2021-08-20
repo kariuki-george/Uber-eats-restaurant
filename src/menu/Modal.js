@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Modal.scss";
 import Axios from "axios";
-import Notification from "../components/Notification";
 
 function Modal({ closeModal, handleClose }) {
   const [name, setName] = useState("");
@@ -49,13 +48,6 @@ function Modal({ closeModal, handleClose }) {
     }
   };
 
-  const notification = () => {
-    setTimeout(() => {
-      setSending(false);
-      setInfo("sending");
-    }, 4000);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,7 +59,6 @@ function Modal({ closeModal, handleClose }) {
     const response = await uploadImage();
     if (response === "error") {
       setInfo("An error occured. Please check your image and try again");
-      return notification();
     }
     setUrl(response);
 
@@ -76,17 +67,15 @@ function Modal({ closeModal, handleClose }) {
       setInfo(
         "An error occured. Please check your details or network and try again"
       );
-      return notification();
     }
 
     const tttt = res;
     if (tttt !== "Created successfully") {
       setInfo("Error: The name given to food is already taken");
-      return notification();
     }
 
     setInfo(tttt);
-    notification();
+
     return;
   };
 
@@ -123,7 +112,6 @@ function Modal({ closeModal, handleClose }) {
             <button onClick={handleSubmit}>add</button>
           </div>
         </form>
-        {sending && <Notification info={info} />}
       </div>
     )
   );
