@@ -1,0 +1,14 @@
+.right {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3em;
+  .preferences {
+    div {
+      display: flex;
+      align-items: center;
+      input {
+        width: 20px;
+      }
+    }
+  }
+}

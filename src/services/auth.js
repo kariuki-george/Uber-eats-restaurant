@@ -45,7 +45,7 @@ const login = createAsyncThunk("restaurant/login", async (user, thunkAPI) => {
     } else {
       const { _id, email, username } = response.data;
 
-      localStorage.setItem("user", { _id, email, username });
+      localStorage.setItem("user", JSON.stringify({ _id, email, username }));
 
       return { _id, email, username };
     }

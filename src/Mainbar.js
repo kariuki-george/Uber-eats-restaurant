@@ -15,6 +15,7 @@ import Menu from "./menu/Menu";
 import Orders from "./orders/Orders";
 import Settings from "./settings//Settings";
 import "./Mainbar.scss";
+import Landing from "./landing/Landing";
 
 function Mainbar() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -34,10 +35,10 @@ function Mainbar() {
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
 
-          <PrivateRoute exact path="/" component={Orders} />
-          <PrivateRoute exact path="/" component={Menu} />
-          <PrivateRoute exact path="/" component={Statistics} />
-          <PrivateRoute exact path="/" component={Settings} />
+          <PrivateRoute exact path="/orders" component={Orders} />
+          <PrivateRoute exact path="/menu" component={Menu} />
+          <PrivateRoute exact path="/statistics" component={Statistics} />
+          <PrivateRoute exact path="/settings" component={Settings} />
 
           <Route exact path="/login">
             <Login />
@@ -45,7 +46,10 @@ function Mainbar() {
           <Route exact path="/register">
             <Register />
           </Route>
-          <Redirect from="*" to="/landing" />
+          <Route>
+            <Landing />
+          </Route>
+          <Redirect from="*" to="/" />
         </Switch>
         {/* <Footer /> */}
       </Router>

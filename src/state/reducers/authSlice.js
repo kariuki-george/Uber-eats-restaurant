@@ -1,7 +1,7 @@
 import { login, logout, register } from "../../services/auth";
 import { createSlice } from "@reduxjs/toolkit";
 
-const userData = localStorage.getItem("user");
+const userData = JSON.parse(localStorage.getItem("user"));
 
 const initialState = userData
   ? { isLoggedIn: true, userData }
@@ -14,6 +14,7 @@ const initialState = userData
       userData: {
         username: "",
         email: "",
+        _id: "",
       },
     };
 
@@ -36,7 +37,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
     },
     [login.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.userData = action.payload;
       state.isLoggedIn = true;
       state.isSuccess = true;
       state.isFetching = false;

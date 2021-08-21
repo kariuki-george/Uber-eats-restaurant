@@ -16,7 +16,7 @@ code {
 .light {
   --border-color: gray;
   --background-color: white;
-  --input-background-color: whitesmoke;
+  --input-background-color: rgb(233, 225, 225);
   --modal-background-color: rgb(211, 209, 209);
   --color: black;
   --shadow-color: rgba(0, 0, 0, 0.637);
@@ -49,7 +49,8 @@ h5,
 h6,
 span,
 input::placeholder,
-input {
+input,
+label {
   color: var(--color);
   text-decoration: none;
 }
@@ -72,8 +73,10 @@ h2 {
 h3 {
   font-size: 1.5em;
 }
-h4 {
+h4,
+label {
   font-size: 1.25em;
+  font-weight: 300;
 }
 h5 {
   font-size: 1em;
@@ -106,6 +109,7 @@ select {
   margin: 1em;
   border-radius: 10px;
 }
+
 form {
   width: 400px;
   background-color: var(--modal-background-color);

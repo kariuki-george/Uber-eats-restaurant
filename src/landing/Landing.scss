@@ -1,0 +1,23 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  form {
+    width: 80%;
+
+    margin: auto;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h4 {
+      margin-bottom: 1em;
+    }
+    div {
+      margin: 1em;
+    }
+  }
+}
