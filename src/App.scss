@@ -34,6 +34,11 @@ code {
   --backdrop-color: rgba(255, 255, 255, 0.26);
   transition: 1s ease-in-out;
 }
+.App {
+  position: absolute;
+  right: 0px;
+  padding: 1em;
+}
 
 * {
   margin: 0;
@@ -98,7 +103,8 @@ button:hover {
   border: 1px (--background-color) solid;
 }
 input,
-select {
+select,
+textarea {
   font-size: 1.2em;
   border: none;
   outline: none;

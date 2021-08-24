@@ -1,45 +1,52 @@
 import React, { useState, useEffect } from "react";
-import Orderlist from "../orders/Orderlist";
+import MenuList from "./MenuList";
 import Modal from "./Modal";
-import Axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getFood, updateFood, deleteFood } from "../services/menu";
+import { clearState } from "../state/reducers/menuSlice";
+
+import "./Menu.scss";
 
 function Menu() {
-  const [closeModal, setCloseModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [menulist, setMenulist] = useState([]);
+  const { menu } = useSelector((state) => state.menu);
+  const { userData } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
-    setCloseModal(!closeModal);
+    setShowModal(!showModal);
   };
-
-  const getMenulist = async () => {
-    try {
-      const response = await Axios.post(
-        `${process.env.REACT_APP_API_URL}restaurant/getFood`.toString(),
-        { restaurant_id: "610a582f4dad423177e80db6" }
-      );
-
-      setMenulist(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getMenulist();
+    dispatch(clearState());
+    menu && dispatch(getFood({ restaurant_id: userData._id }));
   }, []);
 
+  useEffect(() => {
+    setMenulist(menu);
+  }, [menu]);
+
   return (
-    <div>
+    <div className="menu">
       <header>
         <span>Your menu</span>
-        <button onClick={handleClose}>
-          {!closeModal ? "Cancel" : "Add food"}
-        </button>
-        <button onClick={getMenulist}>refresh</button>
+        <div>
+          <button onClick={handleClose}>
+            {showModal ? "Cancel" : "Add food"}
+          </button>
+          <button
+            onClick={() => dispatch(getFood({ restaurant_id: userData._id }))}
+          >
+            refresh
+          </button>
+        </div>
       </header>
-
-      <Orderlist name="menu" inputList={menulist} />
-      <Modal closeModal={closeModal} handleClose={handleClose} />
+      <MenuList
+        menulist={menulist}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
+      <Modal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 }

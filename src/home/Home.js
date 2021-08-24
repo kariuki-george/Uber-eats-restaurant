@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SettingsIcon from "@material-ui/icons/Settings";
 import "./Home.scss";
 
@@ -22,10 +22,11 @@ function Home() {
       setShuffle_url(Math.floor(Math.random() * urls.length));
     }, 15000);
   }, []);
+
   return (
     <div className="home">
       <div className="hero">
-        <img src={img_url ? img_url : urls[shuffle_url]} />
+        <img src={img_url ? img_url : urls[shuffle_url]} alt="home" />
         <section>
           <div>
             <h3>Hi {username}</h3>

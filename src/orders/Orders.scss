@@ -1,22 +1,23 @@
 .orders {
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   height: 100%;
   width: 100%;
-}
-header {
-  display: flex;
-  justify-content: space-between;
-  margin: 1em;
-  border-bottom: 1px black solid;
-  height: 60px;
 
-  button {
-    background-color: black;
-    color: white;
-    width: 80px;
-    height: 50px;
-    border-radius: 30px;
+  h3 {
+    margin: 2em;
+  }
+  div {
+    display: flex;
+
+    li {
+      text-decoration: none;
+      margin: 1em 2em;
+      margin-top: 1px;
+      list-style: none;
+      color: gray;
+      font-size: 1.3em;
+    }
   }
 }

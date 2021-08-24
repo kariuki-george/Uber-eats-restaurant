@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Axios from "axios";
+
 import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
 import { clearState } from "../state/reducers/authSlice";

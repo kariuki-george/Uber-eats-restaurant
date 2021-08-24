@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Orderlist.scss";
-import UpdateModal from "../menu/UpdateModal";
+
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 function Orderlist({ name, inputList }) {
   const [list, setList] = useState([]);
@@ -17,50 +18,37 @@ function Orderlist({ name, inputList }) {
       setOrderDetails(order);
     }
   };
+  const handleAction = () => {};
 
   return (
-    <>
-      {list.length === 0 ? (
-        <div className="orderlist">
-          <span>{name ? `no ${name}` : "no orders available"}</span>
-        </div>
-      ) : (
-        <div className="orderlist">
-          <ul>
-            {list.map((order) => {
-              return (
-                <li
-                  key={order._id}
-                  onDoubleClick={() => {
-                    handleDoubleClick(name, order);
-                  }}
-                >
-                  <div>
-                    <img src={order.img_url} alt="hello" />
-                  </div>
-                  <div>
-                    <ol>
-                      <li>Product: {order.name || order.food_name}</li>
-                      <li>Amount: {order.food_amount || order.price}</li>
-                      {order.createdAt && (
-                        <li>Time: {order.createdAt.split("+")[0]}</li>
-                      )}
-                    </ol>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
-      {showUpdateModal && (
-        <UpdateModal
-          name={name}
-          order={orderDetails}
-          setShowUpdateModal={setShowUpdateModal}
-        />
-      )}
-    </>
+    <div className="orderlist">
+      <ul>
+        <li>
+          <div className="id">id</div>
+          <div className="name">Name</div>
+          <div className="payment">Payment</div>
+          <div className="type">Type</div>
+          <div className="status">Status</div>
+          <div className="total">Total</div>
+          <div className="action">Action</div>
+        </li>
+        {list.map((order) => {
+          return (
+            <li key={order._id}>
+              <div className="id">{order._id}</div>
+              <div className="name">{order.buyerName}</div>
+              <div className="payment">{order.Payment}</div>
+              <div className="type">{order.Type}</div>
+              <div className="status">{order.status}</div>
+              <div className="total">{order.total}</div>
+              <div className="action" onClick={handleAction}>
+                <MoreVertIcon />
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 

@@ -1,40 +1,35 @@
 .orderlist {
-  span {
-    text-align: center;
-    font-size: 1.4em;
-    margin: 1em;
-  }
   ul {
-    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-  }
-  ul > li {
-    height: 150px;
-    width: 400px;
-    background-color: whitesmoke;
-    margin: 1em;
-    border: 1px solid gray;
-    display: flex;
-    align-items: center;
-
-    img {
-      padding: auto;
-      object-fit: cover;
-      height: 140px;
-      width: 190px;
-    }
-
-    ol {
-      height: 200px;
+    flex-direction: column;
+    li {
+      list-style: none;
       display: flex;
-      flex-direction: column;
-      justify-content: space-around;
+      margin: 1em;
+      border: 1px var(--border-color) solid;
+      border-radius: 10px;
 
-      li {
-        text-decoration: none;
-        padding: 1em;
+      div {
+        margin: 10px;
+        color: var(--color);
       }
+
+      .total,
+      .type,
+      .payment,
+      .status {
+        width: 120px;
+      }
+      .name {
+        width: 160px;
+      }
+      .action,
+      .id {
+        width: 60px;
+      }
+    }
+    li:hover {
+      transform: scale(1.05);
     }
   }
 }
