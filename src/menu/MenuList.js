@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import UpdateIcon from "@material-ui/icons/Update";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./MenuList.scss";
-import {gti deleteFood } from "../services/menu";
+import { deleteFood } from "../services/menu";
 import { clearState } from "../state/reducers/menuSlice";
 import Modal from "./Modal";
 import { useSelector, useDispatch } from "react-redux";
