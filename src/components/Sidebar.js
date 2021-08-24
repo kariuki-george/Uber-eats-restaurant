@@ -19,9 +19,10 @@ function Sidebar() {
       localStorage.setItem("theme", ".dark");
       dispatch(setDark());
     } else {
-    }
-    localStorage.setItem("theme", ".light");
+     localStorage.setItem("theme", ".light");
     dispatch(setLight());
+    }
+   
   };
   const handleRouting = (to) => {
     history.push(to);
